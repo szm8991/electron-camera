@@ -3,16 +3,14 @@
   "productName": "ap-camera",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "main": "electron/main.cjs",
+  "main": "./out/main/index.js",
   "scripts": {
-    "dev": "concurrently \"vite\" \"electron .\"",
-    "electron": "electron .",
-    "vite": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev --watch",
+    "build": "npm run typecheck && electron-vite build"
   },
   "dependencies": {
+    "electron-vite": "^1.0.24",
     "vue": "^3.2.47"
   },
   "devDependencies": {
