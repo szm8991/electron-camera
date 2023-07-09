@@ -11,18 +11,18 @@
     "build": "npm run typecheck && electron-vite build"
   },
   "dependencies": {
-   
+    "@electron-toolkit/preload": "^2.0.0"
   },
   "devDependencies": {
-    "electron-vite": "^1.0.24",
-    "vue": "^3.2.47",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@types/node": "^20.4.1",
     "@vitejs/plugin-vue": "^4.1.0",
     "concurrently": "^8.2.0",
     "electron": "^25.2.0",
+    "electron-vite": "^1.0.24",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
+    "vue": "^3.2.47",
     "vue-tsc": "^1.4.2"
   }
 }

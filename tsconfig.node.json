@@ -5,7 +5,9 @@
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "outDir": "out"
   },
-  "include": ["vite.config.ts", "electron.vite.config.ts", "src/main/*", "src/preload/*"]
+  "include": ["vite.config.ts", "electron.vite.config.ts", "src/main/*", "src/preload/*"],
+  "exclude": ["out/**/*"]
 }
