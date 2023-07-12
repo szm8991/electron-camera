@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import Camera from './components/Camera.vue';
 const setTitle = (title: string) => window.api.setTitle(title);
 </script>
 
 <template>
-  <h1>hello,world!</h1>
+  <Camera></Camera>
   <button @click="setTitle('Camera APP')">更改标题</button>
 </template>
 
