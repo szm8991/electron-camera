@@ -16,8 +16,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <video></video>
+  <main class="w-screen h-screen overflow-hidden">
+    <video class="object-cover h-full"></video>
   </main>
 </template>
 
