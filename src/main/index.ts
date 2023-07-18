@@ -2,6 +2,7 @@ import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'node:path'
 import './quit'
+import './windowSize'
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 500,
