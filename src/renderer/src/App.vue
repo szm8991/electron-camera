@@ -2,9 +2,15 @@
 import { CameraFive, InnerShadowTopLeft, Setting as SettingIcon } from '@icon-park/vue-next';
 import Camera from './components/Camera.vue';
 import Setting from './components/Setting.vue';
+import useDrag from './hooks/useDrag';
 import { useConfigStore } from './stores/useConfigStore';
 const { config } = useConfigStore();
+
+const { drag } = useDrag();
+drag.run();
+
 const quit = () => window.api.quit();
+
 const changeRound = () => {
   config.rounded = !config.rounded;
   if (config.rounded) window.api.setWindowSize({ aspectRatio: 1, width: 300, height: 300 });
