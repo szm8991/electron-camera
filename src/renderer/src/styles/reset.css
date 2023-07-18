@@ -5,9 +5,5 @@
 }
 
 html {
-  -webkit-app-region: drag;
-}
-
-textarea {
   -webkit-app-region: no-drag;
 }
