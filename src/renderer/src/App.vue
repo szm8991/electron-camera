@@ -4,7 +4,7 @@ import Camera from './components/Camera.vue';
 import Setting from './components/Setting.vue';
 import { useConfigStore } from './stores/useConfigStore';
 const { config } = useConfigStore();
-
+const quit = () => window.api.quit();
 const changeRound = () => {
   config.rounded = !config.rounded;
   if (config.rounded) window.api.setWindowSize({ aspectRatio: 1, width: 300, height: 300 });
@@ -15,7 +15,7 @@ const changeRound = () => {
 <template>
   <!-- async setup() 必须与 Suspense 内置组件组合使用 -->
   <Suspense>
-    <main class="relative group">
+    <main class="relative group" @contextmenu="quit">
       <SettingIcon
         theme="outline"
         size="24"
