@@ -4,14 +4,22 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 // Custom APIs for renderer
 const api = {
-  setTitle:(title:string)=>{
-    ipcRenderer.send('setTitle',title)
+  quit: () => {
+    ipcRenderer.send('quit')
+  },
+  drag: (opt: { x: number; y: number }) => {
+    ipcRenderer.invoke('drag', opt)
+  },
+  setWindowSize: (opt: any) => {
+    ipcRenderer.send('setWindowSize', opt)
+  },
+  setWindowMaxSize: (opt: { width: number; height: number }) =>{
+    ipcRenderer.send('setWindowMaxSize', opt)
+
   }
 }
 console.log(process.contextIsolated)
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
+
 if (process.contextIsolated) {
   try {
     // 为渲染进程暴露API
