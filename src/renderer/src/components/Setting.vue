@@ -21,6 +21,12 @@ const cameras = devices.filter(d => d.kind.includes('video'));
 
     <el-input v-model="config.borderWidth" placeholder="边框宽度" size="large" clearable></el-input>
     <el-input v-model="config.borderColor" placeholder="边框颜色" size="large" clearable></el-input>
+    <a
+      href="https://www.houdunren.com"
+      target="_blank"
+      class="text-center opacity-70 text-xs text-teal-100 hover:text-yellow-400"
+      >参考后盾人-向军大叔</a
+    >
   </section>
 </template>
 

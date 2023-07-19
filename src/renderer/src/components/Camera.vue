@@ -8,7 +8,7 @@ const videoPlayer = ref<HTMLVideoElement | null>(null);
 onMounted(() => {
   const constraints = {
     audio: true,
-    video: true,
+    video: { deviceId: config.deviceId, width: 1920, height: 1080 },
   } as MediaStreamConstraints;
 
   navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
