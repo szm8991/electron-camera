@@ -1,17 +1,21 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { BrowserWindow, app, shell } from 'electron'
 import { join } from 'node:path'
 import './drag'
+import './maxSize'
 import './quit'
+import createTray from './tray'
 import './windowSize'
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 500,
-    height: 200,
+    height: 280,
+    maxWidth:500,
+    maxHeight:280,
+    show:false,
     alwaysOnTop: true,
     autoHideMenuBar:true,
     transparent:true,
-    show:false,
     frame:false,
     skipTaskbar: false,
     webPreferences:{
@@ -21,8 +25,6 @@ const createWindow = () => {
     }
   })
   
-  console.log(process)
-
   if (is.dev) mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -35,7 +37,11 @@ const createWindow = () => {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  } else {
+    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+  }
 }
 app.whenReady().then(() => {
   electronApp.setAppUserModelId('com.electron')
@@ -45,12 +51,19 @@ app.whenReady().then(() => {
   })
   
   createWindow()
-  ipcMain.on('setTitle', (event, title) => {
-    //获取用于控制网页的webContents对象
-    const webContents = event.sender
-    //获取窗口
-    const win = BrowserWindow.fromWebContents(webContents)
-    //设置窗口标题
-    win!.setTitle(title)
+  
+  createTray()
+  app.on('activate', function () {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+  //隐藏 dock 图标
+  app.dock.hide()
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 })
