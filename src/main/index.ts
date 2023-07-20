@@ -17,7 +17,7 @@ const createWindow = () => {
     autoHideMenuBar:true,
     transparent:true,
     frame:false,
-    skipTaskbar: false,
+    skipTaskbar: true,
     webPreferences:{
       preload: join(__dirname, '../preload/index.js'),
       //关闭沙盒模式
@@ -53,7 +53,7 @@ app.whenReady().then(() => {
   createWindow()
   
   createTray()
-  
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
