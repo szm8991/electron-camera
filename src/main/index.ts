@@ -1,5 +1,5 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { BrowserWindow, app, shell } from 'electron'
+import { BrowserWindow, Notification, app, shell } from 'electron'
 import { join } from 'node:path'
 import './drag'
 import './maxSize'
@@ -53,13 +53,17 @@ app.whenReady().then(() => {
   createWindow()
   
   createTray()
-
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
   if (process.platform == 'darwin') app.dock.hide()
+}).then(()=>{
+  new Notification({
+    title:'Camera通知',
+    body: '联系作者：9527',
+  }).show()
 })
 
 app.on('window-all-closed', () => {
