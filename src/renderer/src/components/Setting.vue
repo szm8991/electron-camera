@@ -14,7 +14,7 @@ const cameras = devices.filter(d => d.kind.includes('video'));
         :key="item.deviceId"
         :label="item.label"
         :value="item.deviceId"
-        size="large"
+        size="small"
       >
       </el-option>
     </el-select>

@@ -14,11 +14,11 @@ const quit = () => window.api.quit();
 const changeRound = () => {
   config.rounded = !config.rounded;
   if (config.rounded) {
-    window.api.setWindowSize({ aspectRatio: 1, width: 300, height: 300 });
-    window.api.setWindowMaxSize({ width: 300, height: 300 });
+    window.api.setWindowMaxSize({ width: 350, height: 320 });
+    window.api.setWindowSize({ aspectRatio: 1, width: 350, height: 320 });
   } else {
-    window.api.setWindowSize({ aspectRatio: 16 / 9, width: 500, height: 280 });
-    window.api.setWindowMaxSize({ width: 500, height: 280 });
+    window.api.setWindowMaxSize({ width: 500, height: 320 });
+    window.api.setWindowSize({ aspectRatio: 16 / 9, width: 500, height: 320 });
   }
 };
 </script>

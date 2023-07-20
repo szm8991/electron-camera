@@ -9,9 +9,9 @@ import './windowSize'
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 500,
-    height: 280,
+    height: 320,
     maxWidth:500,
-    maxHeight:280,
+    maxHeight:320,
     show:false,
     alwaysOnTop: true,
     autoHideMenuBar:true,
